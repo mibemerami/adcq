@@ -5,5 +5,6 @@ When you read the Atlassian documentation to learn, you can write questions to t
 
 ## Prerequesites:
 node.js v10.6.0 upwards
+
 Mongo DB running on localhost:27017 with the data folder in this Project as DB Path.
 
