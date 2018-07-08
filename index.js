@@ -1,7 +1,9 @@
 const express = require("express")
 const exphbs = require("express-handlebars")
 const mongoose = require("mongoose")
+const bodyParser = require("body-parser");
 const data = require("./lib/data")
+
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise  // Mongoose Promise is depricated
@@ -16,6 +18,10 @@ mongoose.connect("mongodb://localhost:27017/adcq")
 
 // Initialize server
 let app = express()
+
+// Add middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Configure template-engine
 app.engine("handlebars", exphbs({ defaultLayout: "main" }))
