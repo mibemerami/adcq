@@ -10,4 +10,4 @@ const QuestionsSchema = new schema({
     points:{type: Number}
 })
 
-mongoose.model("Questions", QuestionsSchema)
+module.exports = mongoose.model("question", QuestionsSchema)

@@ -28,10 +28,12 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }))
 app.set("view engine", "handlebars")
 
 // Define routes
-app.get("/", (req, res) => {
+app.get("/", (req, res) => {    
     console.log(req.query);
+    
+    
     /*
-    data.getQuestions()
+    data.getQuestions({filter: req.query.q})
         .then((questions)=>{
             questions.sortByTopic()
         }).then((sortetQuestions) => {
