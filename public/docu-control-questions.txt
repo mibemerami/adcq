@@ -1,0 +1,73 @@
+
+
+Create a Project:
+https://confluence.atlassian.com/adminjiraserver075/creating-a-project-935390812.html
+
+Q: What is the relation between a project key and an issue name?
+A: The issue name starts with the project key.
+
+Q: Can there be two project with the same name?
+A: No, a project name is unique, as well as the project key.
+
+Add Users:
+https://confluence.atlassian.com/adminjiraserver075/adding-new-users-935390814.html
+
+Q: Are usernames case sensitive? 
+A: No.
+
+
+Managing permissions:
+https://confluence.atlassian.com/adminjiraserver075/managing-permissions-935390817.html
+
+Q: Select the enteties that a global permission can be assigned to:
+   Users
+   Groups
+   Roles
+A: Only to Groups.
+
+Q: Select the enteties that a project permission can be assigned to:
+   Users
+   Groups
+   Roles
+A: To all of them.
+
+Q: Where can you add a new role?
+A: Under: Settings>System>Project roles
+
+Q: Where do you create a new permission scheme?
+A: Under: Settings>Issues>Permission schemes
+
+Q: Where do you apply a permission scheme to a project?
+A: Under: Project settings>Permissions>Actions
+
+
+JIRA applications and project types overview:
+https://confluence.atlassian.com/adminjiraserver078/jira-applications-and-project-types-overview-947188387.html
+
+Q: Name all three Jira applications?
+A: Jira Core, Jira Software, Jira Servicedesk
+
+Q: Can a user without application access for Jira Software, but with Browse permission for a given Jira Software project, 
+open the project, and read the issues?
+A: Yes.
+
+Q: Can a user without application access for Jira Software, but with Browse permission for a given Jira Software project,
+open a board (i.e. a Scrum Board) in that project?
+A: No, as he has no application access, he can not see application specific content.
+
+
+Installing additional applications and version updates:
+https://confluence.atlassian.com/adminjiraserver078/installing-additional-applications-and-version-updates-947188429.html
+
+Q: Where can you manage the Jira applications?
+A: Under: Settings>Applications>Versions & licenses
+
+Q: How can you update an application to an arbitrary version (usefull, when you need anohter version than the latest)? 
+A: Get the version update file from the Atlassian download pages, and use the Upload an application link under Settings>Applications>Versions & licenses
+
+Q: Which permission do to update or install a Jira Application?
+A: The global permission "JIRA Adinistrator".
+
+
+ 
+
