@@ -1,2 +1,2 @@
-data/*
-node_modules/*
+#data/* - there is a .gitignorefile in that folder
+#node_modules/* - there is a .gitignorefile in that folder
