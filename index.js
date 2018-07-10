@@ -56,7 +56,7 @@ app.get("/questions-run", (req, res) => {
         })
         .catch(err => console.log(err))
         
-    res.send("start testing has been called")
+    // res.send("start testing has been called")
 })
 
 app.get("/add_question/", (req, res) => {
