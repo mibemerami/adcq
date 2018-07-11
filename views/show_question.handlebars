@@ -11,13 +11,23 @@
             document.questionsArray = JSON.parse('{{{supplyQuestions}}}')
         }
         function performNextStep() {
-            if(document.questionAnswer){
+            if (document.questionAnswer) {
                 document.questionCounter++
-            }else{
-                document.questionAnswer = !document.questionAnswer
             }
-            let question = document.questionsArray[document.questionCounter]
-            document.getElementById("para1").textContent  = "Q: "+ question.question
+            document.questionAnswer = !document.questionAnswer
+            if (document.questionCounter < document.questionsArray.length) {
+                let question = document.questionsArray[document.questionCounter]
+                document.getElementById("question").textContent = "Q: " + question.question
+                if (document.questionAnswer) { 
+                    document.getElementById("answer").textContent = "A: " + question.answer 
+                } else { 
+                    document.getElementById("answer").textContent = "A: "
+                }
+            } else {
+                document.getElementById("doneInfo").textContent = "Done"
+                document.getElementById("doneInfo").style.color = "green"
+            }
+
         }
         document.addEventListener('DOMContentLoaded', initializeQuestionData)
     </script>
@@ -25,8 +35,8 @@
     <h2>Demonstration</h2>
     <div class="card card-body m-1">
         <p class="text-center " id="question">Q: {{questions.0.question}}</p>
-        <p class="text-center " id="answer" >A: {{showQuestionsOnTestRun}}</p>
-        <p id="docuTopic" class="text-center"></p>
+        <p class="text-center " id="answer">A: </p>
+        <p id="doneInfo" class="text-center"></p>
 
 
         <div class="btn-toolbar justify-content-between m-2" role="toolbar" aria-label="Toolbar with button groups">
@@ -34,8 +44,8 @@
                 <button type="button" class="btn btn-secondary">Edit</button>
             </div>
             <div class="btn-group mr-2 " role="group" aria-label="Second group">
-                <button type="button"  onclick="changeColor('red');" class="btn btn-secondary">Back</button>
-                <button type="button"  onclick="changeColor('blue');" class="btn btn-secondary">Next</button>
+                <button type="button" onclick="changeColor('red');" class="btn btn-secondary">Back</button>
+                <button type="button" onclick="performNextStep();" class="btn btn-secondary">Next</button>
             </div>
         </div>
     </div>
