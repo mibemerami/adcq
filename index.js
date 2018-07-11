@@ -35,7 +35,7 @@ let hbs = exphbs.create({
             
             return this.questions[0].answer},
         supplyQuestions: function(){
-            return JSON.stringify({questionsArray: this.questions  }).replace(/\n|\r/g, "")
+            return JSON.stringify(this.questions).replace(/\n|\r/g, '')
         }  
       }
 })

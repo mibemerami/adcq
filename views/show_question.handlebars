@@ -1,19 +1,31 @@
 <div class="container">
     <script>
         function changeColor(newColor) {
-            var elem = document.getElementById("para1");
-            elem.style.color = newColor;
+            document.questionCounter++
+            var elem = document.getElementById("para1")
+            elem.style.color = newColor
         }
-        function setQuestionsArray(){
-            var questionsArray = JSON.parse({{{supplyQuestions}}})
+        function initializeQuestionData() {
+            document.questionCounter = 0
+            document.questionAnswer = false
+            document.questionsArray = JSON.parse('{{{supplyQuestions}}}')
         }
-        document.addEventListener('DOMContentLoaded', setQuestionsArray)
+        function performNextStep() {
+            if(document.questionAnswer){
+                document.questionCounter++
+            }else{
+                document.questionAnswer = !document.questionAnswer
+            }
+            let question = document.questionsArray[document.questionCounter]
+            document.getElementById("para1").textContent  = "Q: "+ question.question
+        }
+        document.addEventListener('DOMContentLoaded', initializeQuestionData)
     </script>
     <h1>Test Run</h1>
     <h2>Demonstration</h2>
     <div class="card card-body m-1">
-        <p class="text-center ">Q: {{questions.0.question}}</p>
-        <p class="text-center " id="para1" >A: {{showQuestionsOnTestRun}}</p>
+        <p class="text-center " id="question">Q: {{questions.0.question}}</p>
+        <p class="text-center " id="answer" >A: {{showQuestionsOnTestRun}}</p>
         <p id="docuTopic" class="text-center"></p>
 
 
