@@ -1,24 +1,36 @@
-
 <div class="container">
+    <script>
+        function changeColor(newColor) {
+            var elem = document.getElementById("para1");
+            elem.style.color = newColor;
+        }
+        function setQuestionsArray(){
+            var questionsArray = JSON.parse({{{supplyQuestions}}})
+        }
+        document.addEventListener('DOMContentLoaded', setQuestionsArray)
+    </script>
     <h1>Test Run</h1>
     <h2>Demonstration</h2>
     <div class="card card-body m-1">
-        <p class="text-center">Q: Here could be your question.</p>
-        
-    
+        <p class="text-center ">Q: {{questions.0.question}}</p>
+        <p class="text-center " id="para1" >A: {{showQuestionsOnTestRun}}</p>
+        <p id="docuTopic" class="text-center"></p>
 
-    <div class="btn-toolbar justify-content-between m-2" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group">
-            <button type="button" class="btn btn-secondary">Edit</button>
+
+        <div class="btn-toolbar justify-content-between m-2" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-secondary">Edit</button>
+            </div>
+            <div class="btn-group mr-2 " role="group" aria-label="Second group">
+                <button type="button"  onclick="changeColor('red');" class="btn btn-secondary">Back</button>
+                <button type="button"  onclick="changeColor('blue');" class="btn btn-secondary">Next</button>
+            </div>
         </div>
-        <div class="btn-group mr-2 " role="group" aria-label="Second group">
-            <button type="button" class="btn btn-secondary">Back</button>
-            <button type="button" class="btn btn-secondary">Next</button>
-        </div>
-    </div>
     </div>
     <div>
-    <p class="text-center">Tags:<br>
-        demo, test</p> 
+        <p class="text-center">
+            Tags:
+            <br> demo, test
+        </p>
     </div>
 </div>
