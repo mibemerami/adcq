@@ -17,11 +17,11 @@
             document.questionAnswer = !document.questionAnswer
             if (document.questionCounter < document.questionsArray.length) {
                 let question = document.questionsArray[document.questionCounter]
-                document.getElementById("question").textContent = "Q: " + question.question
+                document.getElementById("question").textContent = question.question
                 if (document.questionAnswer) { 
-                    document.getElementById("answer").textContent = "A: " + question.answer 
+                    document.getElementById("answer").textContent = question.answer 
                 } else { 
-                    document.getElementById("answer").textContent = "A: "
+                    document.getElementById("answer").textContent = "..."
                 }
             } else {
                 document.getElementById("doneInfo").textContent = "Done"
@@ -34,9 +34,9 @@
     <h1>Test Run</h1>
     <h2>Demonstration</h2>
     <div class="card card-body m-1">
-        <p class="text-center " id="question">Q: {{questions.0.question}}</p>
-        <p class="text-center " id="answer">A: </p>
-        <p id="doneInfo" class="text-center"></p>
+        <p class="text-center " id="question">{{questions.0.question}}</p>
+        <p class="text-center " id="answer">... </p>
+        <p id="doneInfo" class="text-center">&#160; </p>
 
 
         <div class="btn-toolbar justify-content-between m-2" role="toolbar" aria-label="Toolbar with button groups">
