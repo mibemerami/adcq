@@ -7,7 +7,9 @@ const QuestionsSchema = new Schema({
     topic: {type: String, required: true},
     url: {type: String, required: true},
     tags: {type: Array},
-    points:{type: Number}
+    points:{type: Number},
+    author:{type: String},
+    comment:{type: String}
 })
 
 module.exports = mongoose.model("question", QuestionsSchema)

@@ -23,9 +23,29 @@ let app = express()
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Configure template-engine
-app.engine("handlebars", exphbs({ defaultLayout: "main" }))
+// Add and configure template-engine
+let hbs = exphbs.create({
+    defaultLayout: "main",
+    helpers: {
+        showQuestionsOnTestRun: function(){ 
+            console.log("Type of questions is:")
+            console.log(typeof this.questions[0].answer)
+            console.log("This is: ")
+            console.log(this);
+            
+            return this.questions[0].answer},
+        supplyQuestions: function(){
+            return JSON.stringify(this.questions).replace(/\n|\r/g, '')
+        }  
+      }
+})
+app.engine("handlebars", hbs.engine )
 app.set("view engine", "handlebars")
+
+/*
+app.engine("handlebars", exphbs({ defaultLayout: "main" }) )
+app.set("view engine", "handlebars")
+*/
 
 // Define routes
 app.get("/", (req, res) => {
@@ -44,7 +64,7 @@ app.get("/", (req, res) => {
         .then((sortetQuestions) => {
             res.render("home", { questions: sortetQuestions })
         })
-
+        .catch(err => console.log(err))
     // res.render("home")
 })
 
