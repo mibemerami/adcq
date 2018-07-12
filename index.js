@@ -27,56 +27,38 @@ app.use(bodyParser.urlencoded({ extended: false }));
 let hbs = exphbs.create({
     defaultLayout: "main",
     helpers: {
-        showQuestionsOnTestRun: function(){ 
-            console.log("Type of questions is:")
-            console.log(typeof this.questions[0].answer)
-            console.log("This is: ")
-            console.log(this);
-            
-            return this.questions[0].answer},
-        supplyQuestions: function(){
+        supplyQuestions: function () {
             return JSON.stringify(this.questions).replace(/\n|\r/g, '')
-        }  
-      }
+        }
+    }
 })
-app.engine("handlebars", hbs.engine )
+app.engine("handlebars", hbs.engine)
 app.set("view engine", "handlebars")
-
-/*
-app.engine("handlebars", exphbs({ defaultLayout: "main" }) )
-app.set("view engine", "handlebars")
-*/
 
 // Define routes
 app.get("/", (req, res) => {
     console.log(req.query);
+    data.getQuestionCategories({ filter: req.query.q })
+        .then((result) => {
+            //let topics = result.map(q => q.topic) 
+            let urlsWithTopics = result.map(q1 => { 
+                
+                return result.filter(q2 => q1.url === q2.url).map(q3 => q3.topic) 
+            })
+            console.log("The topics are: ", urlsWithTopics);
 
-    /*
-    data.getDocuURLs({filter: req.query.q})
-        
-        .then((questions)=>{
-            questions.sortByTopic()
-        })
-        .then((sortetQuestions) => {
-            res.render("home", {questions: sortetQuestions})
-        })*/
-    data.getDocuURLs({ filter: req.query.q })
-        .then((sortetQuestions) => {
-            res.render("home", { questions: sortetQuestions })
+            res.render("home", { questions: result })
         })
         .catch(err => console.log(err))
-    // res.render("home")
 })
 
 app.get("/questions-run", (req, res) => {
     data.getQuestionByID({ _id: req.query.id })
         .then(question => data.getAllQuestionsForTest(question.url))
-        .then(questions => { 
+        .then(questions => {
             helpers.runQuestions(questions, res)
         })
         .catch(err => console.log(err))
-        
-    // res.send("start testing has been called")
 })
 
 app.get("/add_question/", (req, res) => {
