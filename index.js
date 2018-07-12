@@ -42,7 +42,7 @@ app.get("/", (req, res) => {
         .then((result) => {
             let normalizedResult = helpers.normalizeQueryResultForStartPage(result)
             console.log("The completely normalized data is: ", normalizedResult);
-            res.render("home", { questions: result })
+            res.render("home", { questions: normalizedResult })
         })
         .catch(err => console.log(err))
 })
