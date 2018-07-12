@@ -52,7 +52,7 @@ open the project, and read the issues?
 A: Yes.
 
 Q: Can a user without application access for Jira Software, but with Browse permission for a given Jira Software project,
-open a board (i.e. a Scrum Board) in that project?
+open a board (e.g. a Scrum Board) in that project?
 A: No, as he has no application access, he can not see application specific content.
 
 
@@ -69,5 +69,109 @@ Q: Which permission do to update or install a Jira Application?
 A: The global permission "JIRA Adinistrator".
 
 
+Configuring projects:
+https://confluence.atlassian.com/adminjiraserver078/configuring-projects-947188651.html
+
+Q: Give a definition of a Jira project:
+A: Jira projects are a way of grouping issues together and a way of applying the same sets of configurations to issues.
  
+
+Defining a project:
+https://confluence.atlassian.com/adminjiraserver078/defining-a-project-947188652.html
+
+Q: Wich permission do you need to create a project?
+A: The JIRA Administrators global permission.
+
+Q: When you create a new project from a template, that project is created with its own set of schemes. Which are those schemes:
+A: These schemes are:
+a permission scheme (default)
+a notification scheme (default)
+an issue security scheme
+a workflow scheme
+an issue type scheme
+an issue type screen scheme
+a field configuration scheme (default)
+
+Q: How can you use the configuration of an existing project?
+A: When you create a project, you can select "Create with shared configuration", insteat of selecting a project type,  
+to select an existing project and to use that project's schemes.
+
+Q: Which permission do you need to change a project category?
+A: Project administrator or higher.
+
+Q: Where do you change the project category?
+A: Under: Project settings>Details
+
+Q: If you delete a project, what will be deleted, and what not?
+A: Deleting a project will only delete the issues, versions and components associated with the project. 
+It won't delete any of the associated schemes, workflows or issues types, or any content that could be shared with another project.
+
+Q: Where do you change the project key?
+A: Under: Project settings>Details
+
+Q: Where can you create a project category? 
+A: Under: Settings>Projects>Project Categories
+
+Q: Why are categories useful? 
+A: For filtering and sorting of issues and projects, by category.
+
+Q: Can a project belong to many categories?
+A: No, only to one.
+
+Q: Can project categories be hirachical? 
+A: No.
+
+Q: List all the configuration sections in the summery of the project settings.
+A: Issue types, Workflows, Screens, Fields, Settings, Versions, Components, Roles, Permissions, Notifications, Development tools
+
+Q: Give a definition of a screen in Jira.
+A: A screen is simply a collection of fields.
+
+Q: Name the types of schemes, that are relevant to say which fields are visible, on an issue operation.
+A: The "Issue Type Screen Scheme" and the "Screen Scheme"
+
+Q: What does a field configuration do?
+A: A field configuration determines each field's overall visibility, requiredness, formatting (wiki/rich-text or plain) and help-text.
+
+Q: What is a precondition for adding an Application Link to a project?
+A: An AppLink on system level, between Jira and the application you want your project to link to. E.g. between Jira and Confluence.
+
+Q: What two values can the default assignee have, if the general configuration "Allow unassigned issues" is set to "On"? 
+A: Project Lead and Unassigned
+
+Q: Can an issue belong to more than one component?
+A: Yes.
+
+Q: You can choose to grant access to specific users, or groups, or roles. Which one of those is often the easiest to manage?
+A: Roles.
+
+Q: You can choose specific people, or groups, or roles to receive email notifications when different events occur. Which one of those 
+is often the easiest to manage?
+A: Roles.
+
+Q: What can a project admisitrator do, without the global permission JIRA Administrator?
+A: A project administrator can:
+Edit the project name
+Edit the project description
+Edit the project avatar image
+Edit the project URL
+Edit the project lead
+Edit project role membership
+Change the project type
+Define project components
+Define project versions
+View, but not select nor edit the project's schemes
+
+
+Project screens, schemes and fields:
+https://confluence.atlassian.com/adminjiraserver078/project-screens-schemes-and-fields-947188815.html
+
+Q: What are the two ways a screen can be mapped to an issue type?
+A: 1) Via a Screen Scheme and an Issue Type Screen Scheme. 2) Via a Workflow and a Workflow Schmeme.
+
+Q: What is the difference between a Schrene Scheme and a Workflow, regarding Schreens?
+A: A Screen Scheme mapps screens to Issue Statuses (like create, view, edit), and a Workflow mapps screens to Transitions.
+
+
+
 
