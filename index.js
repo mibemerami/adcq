@@ -40,13 +40,8 @@ app.get("/", (req, res) => {
     console.log(req.query);
     data.getQuestionCategories({ filter: req.query.q })
         .then((result) => {
-            //let topics = result.map(q => q.topic) 
-            let urlsWithTopics = result.map(q1 => { 
-                
-                return result.filter(q2 => q1.url === q2.url).map(q3 => q3.topic) 
-            })
-            console.log("The topics are: ", urlsWithTopics);
-
+            let normalizedResult = helpers.normalizeQueryResultForStartPage(result)
+            console.log("The completely normalized data is: ", normalizedResult);
             res.render("home", { questions: result })
         })
         .catch(err => console.log(err))
