@@ -1,1 +1,40 @@
-<h1>Add a question:</h1>
+<h1 class="mb-3 text-info">Add a question:</h1>
+<form>
+    <div class="form-group">
+        <label for="questionText">Question *</label>
+        <input type="questionText" class="form-control" id="questionText" aria-describedby="questionTextHelpText" placeholder="What is a..." required>
+        <small id="questionTextHelpText" class="form-text text-muted">Type the actual question.</small>
+    </div>
+    <div class="form-group">
+        <label for="answer">Answer *</label>
+        <input type="answer" class="form-control" id="answer" aria-describedby="answer" placeholder="It is a..." required>
+        <small id="answerHelpText" class="form-text text-muted">Type the answer.</small>
+    </div>
+    <div class="form-group">
+        <label for="topic">Topic/Header *</label>
+        <input type="topic" class="form-control" id="topic" aria-describedby="topic" placeholder="Cofiguration of ..." required>
+        <small id="topicHelpText" class="form-text text-muted">Type the header of the page, which the question refers to.</small>
+    </div>
+    <div class="form-group">
+        <label for="URL">URL *</label>
+        <input type="URL" class="form-control" id="URL" aria-describedby="URL" placeholder="https://..." required>
+        <small id="URLHelpText" class="form-text text-muted">Type the URL of the page, which the question refers to.</small>
+    </div>
+    <div class="form-group">
+        <label for="tags">Tags</label>
+        <input type="tags" class="form-control" id="tags" aria-describedby="tags" placeholder="users; issues; basic...">
+        <small id="tagsHelpText" class="form-text text-muted">Type arbitrary tags to categorize the question.</small>
+    </div>
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input type="author" class="form-control" id="author" aria-describedby="author" placeholder="John Doe...">
+        <small id="authorHelpText" class="form-text text-muted">Type your name.</small>
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <input type="comment" class="form-control" id="comment" aria-describedby="comment" placeholder="This is a comment...">
+        <small id="commentHelpText" class="form-text text-muted">Type a comment.</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

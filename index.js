@@ -37,8 +37,7 @@ app.set("view engine", "handlebars")
 
 // Define routes
 app.get("/", (req, res) => {
-    console.log(req.query);
-    data.getQuestionCategories({ filter: req.query.q })
+    data.getQuestionCategories()
         .then((result) => {
             let normalizedResult = helpers.normalizeQueryResultForStartPage(result)
             res.render("home", { questions: normalizedResult })
@@ -57,6 +56,11 @@ app.get("/questions-run", (req, res) => {
 
 app.get("/add_question/", (req, res) => {
     res.render("add_question")
+})
+
+app.post("/add_question/", (req, res) => {
+    data.addQuestion()  // TODO
+    // res.render("add_question")
 })
 
 // Start server
