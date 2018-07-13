@@ -54,13 +54,22 @@ app.get("/questions-run", (req, res) => {
         .catch(err => console.log(err))
 })
 
-app.get("/add_question/", (req, res) => {
+app.get("/add_question", (req, res) => {
     res.render("add_question")
 })
 
-app.post("/add_question/", (req, res) => {
-    data.addQuestion()  // TODO
-    // res.render("add_question")
+app.post("/add_question", (req, res) => {
+    let questionToAdd = {
+        question: req.body.questionText,
+        answer: req.body.answer,
+        topic: req.body.topic,
+        url: req.body.URL,
+        tags: req.body.tags,
+        author: req.body.author,
+        comment: req.body.comment
+    }
+    data.addQuestion(questionToAdd)  // TODO
+    res.redirect("/add_question")
 })
 
 // Start server
