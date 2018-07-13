@@ -41,7 +41,6 @@ app.get("/", (req, res) => {
     data.getQuestionCategories({ filter: req.query.q })
         .then((result) => {
             let normalizedResult = helpers.normalizeQueryResultForStartPage(result)
-            console.log("The completely normalized data is: ", normalizedResult);
             res.render("home", { questions: normalizedResult })
         })
         .catch(err => console.log(err))
