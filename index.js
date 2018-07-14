@@ -60,15 +60,16 @@ app.get("/add_question", (req, res) => {
 
 app.post("/add_question", (req, res) => {
     let questionToAdd = {
-        question: req.body.questionText,
-        answer: req.body.answer,
-        topic: req.body.topic,
-        url: req.body.URL,
-        tags: req.body.tags,
-        author: req.body.author,
+        question: req.body.questionText.trim(),
+        answer: req.body.answer.trim(),
+        topic: req.body.topic.trim(),
+        url: req.body.URL.trim(),
+        tags: req.body.tags.split(";").map(tag => tag.trim().toLowerCase()),
+        author: req.body.author.trim(),
         comment: req.body.comment
     }
-    data.addQuestion(questionToAdd)  // TODO
+    data.addQuestion(questionToAdd)
+        
     res.redirect("/add_question")
 })
 
