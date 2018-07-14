@@ -1,10 +1,5 @@
 <div class="container">
     <script>
-        function changeColor(newColor) {
-            document.questionCounter++
-            var elem = document.getElementById("para1")
-            elem.style.color = newColor
-        }
         function initializeQuestionData() {
             document.questionCounter = 0
             document.questionAnswer = false
@@ -62,7 +57,7 @@
 
         <div class="btn-toolbar justify-content-between m-2" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary">Edit</button>
+                <button type="button" class="btn btn-secondary">Details</button>
             </div>
             <div class="btn-group mr-2 " role="group" aria-label="Second group">
                 <button type="button" onclick="performBackStep();" class="btn btn-secondary">Back</button>

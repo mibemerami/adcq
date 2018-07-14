@@ -64,7 +64,7 @@ app.post("/add_question", (req, res) => {
         answer: req.body.answer.trim(),
         topic: req.body.topic.trim(),
         url: req.body.URL.trim(),
-        tags: req.body.tags.split(";").map(tag => tag.trim().toLowerCase()),
+        tags: req.body.tags.split(",").map(tag => tag.trim().toLowerCase()),
         author: req.body.author.trim(),
         comment: req.body.comment
     }
