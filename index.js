@@ -69,6 +69,14 @@ app.post("/add_question", (req, res) => {
         comment: req.body.comment
     }
     data.addQuestion(questionToAdd)
+        .then((qta) => {
+                console.log("The new question has been add successfully to the database.");
+                console.log(qta)
+        }).catch((err) => {
+                console.log("A problem occurred, while trying to save the new question:")
+                console.log(questionToAdd)
+                console.log(err)
+        })
         
     res.redirect("/add_question")
 })
