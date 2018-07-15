@@ -81,6 +81,10 @@ app.post("/add_question", (req, res) => {
     res.redirect("/add_question")
 })
 
+app.get("/question_details", (req, res) => {
+    res.send("Question details has been called. "+req.query.id)
+})
+
 // Start server
 app.listen(3000, () => {
     console.log("Listening on port 3000");
