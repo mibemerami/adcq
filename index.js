@@ -82,7 +82,20 @@ app.post("/add_question", (req, res) => {
 })
 
 app.get("/question_details", (req, res) => {
-    res.send("Question details has been called. "+req.query.id)
+    data.getQuestionByID(req.query.id)
+        .then(result => {
+            res.render("question_details", { question: result })
+        })
+        .catch(err => console.log(err))
+
+})
+
+app.post("/update_question", (req, res) => {
+    res.send("update question was called")
+})
+
+app.post("/delete_question", (req, res) => {
+    res.send("delete question was called")
 })
 
 // Start server
