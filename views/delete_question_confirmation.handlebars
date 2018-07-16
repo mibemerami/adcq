@@ -1,0 +1,36 @@
+<h1 class="mb-3 text-info">Question Details:</h1>
+<button class+"btn btn-outline-info">Are you sure you want to delete the question?</button>
+<form action="/question_details?id={{question._id}}" method="get">
+    <div class="form-group">
+        <label for="questionText">Question</label>
+        <input type="questionText" class="form-control" id="questionText"  aria-describedby="questionTextHelpText"
+            value="{{question.question}}">
+    </div>
+    <div class="form-group">
+        <label for="answer">Answer</label>
+        <input type="answer" class="form-control" id="answer"  aria-describedby="answer" value="{{question.answer}}">
+    </div>
+    <div class="form-group">
+        <label for="topic">Topic/Header</label>
+        <input type="topic" class="form-control" id="topic"  aria-describedby="topic" value="{{question.topic}}">
+    </div>
+    <div class="form-group">
+        <label for="URL">URL</label>
+        <input type="URL" class="form-control" id="URL"  aria-describedby="URL" value="{{question.url}}">
+    </div>
+    <div class="form-group">
+        <label for="tags">Tags</label>
+        <input type="tags" class="form-control" id="tags"  aria-describedby="tags" value="{{question.tags}}">
+    </div>
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input type="author" class="form-control" id="author"  aria-describedby="author" value="{{question.author}}">
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <input type="comment" class="form-control" id="comment"  aria-describedby="comment" value="{{question.comment}}">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">No</button>
+    <button type="submit" formaction="/delete_question?id={{question._id}}&delete=true" class="btn btn-primary">Yes Delete</button>
+</form>

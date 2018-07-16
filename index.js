@@ -91,11 +91,47 @@ app.get("/question_details", (req, res) => {
 })
 
 app.post("/update_question", (req, res) => {
-    res.send("update question was called")
+    data.getQuestionByID({ _id: req.query.id })
+        .then(result => {
+            result.question = req.body.questionText.trim(),
+            result.answer = req.body.answer.trim(),
+            result.topic = req.body.topic.trim(),
+            result.url = req.body.URL.trim(),
+            result.tags = req.body.tags.split(",").map(tag => tag.trim().toLowerCase()),
+            result.author = req.body.author.trim(),
+            result.comment = req.body.comment
+            result.save()
+                .then(updatedResult => {
+                    console.log("Update succesfull:")
+                    console.log(updatedResult)
+                    res.redirect("/questions-run?id=" + req.query.id)
+                })
+                .catch(err => console.log("Error while updating a question:", err))
+        })
+        .catch(err => console.log("Error while loading a qustion: ", err))
 })
 
 app.post("/delete_question", (req, res) => {
-    res.send("delete question was called")
+    if(req.query.delete){
+        data.getQuestionByID({ _id: req.query.id })
+            .then(result => {
+                result.remove()
+                    .then(x => {
+                        console.log("The question has been removed")
+                        res.redirect("/")
+                    })
+                    .catch(err => console.log("Error while deleting a question.", err))
+            })
+            .catch(err => console.log("Error while loading a qustion: ", err))
+    }else{
+        data.getQuestionByID({ _id: req.query.id })
+            .then(result => {
+                res.render("delete_question_confirmation",  { question: result })
+            })
+            .catch(err => console.log("Error while loading a qustion: ", err))
+        
+    }
+    // res.send("delete question was called")
 })
 
 // Start server

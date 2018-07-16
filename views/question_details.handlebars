@@ -1,8 +1,8 @@
 
 <h1 class="mb-3 text-info">Question Details:</h1>
-<form action="/update_question" method="post">
+<form action="/update_question?id={{question._id}}" method="post">
     <div class="form-group">
-        <label for="questionText">Question *</label>
+        <label for="questionText">Question</label>
         <input type="questionText" class="form-control" id="questionText" name="questionText" aria-describedby="questionTextHelpText"
             value="{{question.question}}">
     </div>
@@ -31,6 +31,6 @@
         <input type="comment" class="form-control" id="comment" name="comment" aria-describedby="comment" value="{{question.comment}}">
     </div>
     <button type="submit"  class="btn btn-primary">Update</button>
-    <button type="submit" formaction="/delete_question" class="btn btn-primary">Delete</button>
+    <button type="submit" formaction="/delete_question?id={{question._id}}" class="btn btn-primary">Delete</button>
 </form>
 

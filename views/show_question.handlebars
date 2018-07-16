@@ -19,6 +19,7 @@
                     } else { 
                         document.getElementById("answer").textContent = "..."
                     }
+                    document.getElementById("detailsLink").href = "/question_details?id="+question._id
                 } else {
                     document.getElementById("doneInfo").className = "text-center text-success visible"
                 }
@@ -39,15 +40,12 @@
                 } else { 
                     document.getElementById("answer").textContent = "..."
                 }
+                document.getElementById("detailsLink").href = "/question_details?id=" + question._id
                 document.getElementById("doneInfo").className = "text-center text-success invisible"
             } else {
                 document.questionAnswer = false
                 document.getElementById("answer").textContent = "..."
             }
-        }
-        function callQuestionDetails() {
-            let id = document.questionsArray[document.questionCounter]._id
-            window.location = "/question_details?id="+id
         }
         document.addEventListener('DOMContentLoaded', initializeQuestionData)
     </script>
@@ -61,7 +59,7 @@
 
         <div class="btn-toolbar justify-content-between m-2" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
-                <button type="button" onclick="callQuestionDetails();" class="btn btn-secondary">Details</button>
+                <a href="/question_details?id={{questions.0._id}}" type="button" id="detailsLink" class="btn btn-secondary">Details</a>
             </div>
             <div class="btn-group mr-2 " role="group" aria-label="Second group">
                 <button type="button" onclick="performBackStep();" class="btn btn-secondary">Back</button>
