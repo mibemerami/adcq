@@ -1,0 +1,36 @@
+
+<h1 class="mb-3 text-info">Question Details:</h1>
+<form action="/update_question" method="post">
+    <div class="form-group">
+        <label for="questionText">Question *</label>
+        <input type="questionText" class="form-control" id="questionText" name="questionText" aria-describedby="questionTextHelpText"
+            value="{{question.question}}">
+    </div>
+    <div class="form-group">
+        <label for="answer">Answer</label>
+        <input type="answer" class="form-control" id="answer" name="answer" aria-describedby="answer" value="{{question.answer}}">
+    </div>
+    <div class="form-group">
+        <label for="topic">Topic/Header</label>
+        <input type="topic" class="form-control" id="topic" name="topic" aria-describedby="topic" value="{{question.topic}}">
+    </div>
+    <div class="form-group">
+        <label for="URL">URL</label>
+        <input type="URL" class="form-control" id="URL" name="URL" aria-describedby="URL" value="{{question.url}}">
+    </div>
+    <div class="form-group">
+        <label for="tags">Tags</label>
+        <input type="tags" class="form-control" id="tags" name="tags" aria-describedby="tags" value="{{question.tags}}">
+    </div>
+    <div class="form-group">
+        <label for="author">Author</label>
+        <input type="author" class="form-control" id="author" name="author" aria-describedby="author" value="{{question.author}}">
+    </div>
+    <div class="form-group">
+        <label for="comment">Comment</label>
+        <input type="comment" class="form-control" id="comment" name="comment" aria-describedby="comment" value="{{question.comment}}">
+    </div>
+    <button type="submit"  class="btn btn-primary">Update</button>
+    <button type="submit" formaction="/delete_question" class="btn btn-primary">Delete</button>
+</form>
+

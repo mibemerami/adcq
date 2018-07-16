@@ -27,60 +27,75 @@ app.use(bodyParser.urlencoded({ extended: false }));
 let hbs = exphbs.create({
     defaultLayout: "main",
     helpers: {
-        showQuestionsOnTestRun: function(){ 
-            console.log("Type of questions is:")
-            console.log(typeof this.questions[0].answer)
-            console.log("This is: ")
-            console.log(this);
-            
-            return this.questions[0].answer},
-        supplyQuestions: function(){
+        supplyQuestions: function () {
             return JSON.stringify(this.questions).replace(/\n|\r/g, '')
-        }  
-      }
+        }
+    }
 })
-app.engine("handlebars", hbs.engine )
+app.engine("handlebars", hbs.engine)
 app.set("view engine", "handlebars")
-
-/*
-app.engine("handlebars", exphbs({ defaultLayout: "main" }) )
-app.set("view engine", "handlebars")
-*/
 
 // Define routes
 app.get("/", (req, res) => {
-    console.log(req.query);
-
-    /*
-    data.getDocuURLs({filter: req.query.q})
-        
-        .then((questions)=>{
-            questions.sortByTopic()
-        })
-        .then((sortetQuestions) => {
-            res.render("home", {questions: sortetQuestions})
-        })*/
-    data.getDocuURLs({ filter: req.query.q })
-        .then((sortetQuestions) => {
-            res.render("home", { questions: sortetQuestions })
+    data.getQuestionCategories()
+        .then((result) => {
+            let normalizedResult = helpers.normalizeQueryResultForStartPage(result)
+            res.render("home", { questions: normalizedResult })
         })
         .catch(err => console.log(err))
-    // res.render("home")
 })
 
 app.get("/questions-run", (req, res) => {
     data.getQuestionByID({ _id: req.query.id })
         .then(question => data.getAllQuestionsForTest(question.url))
-        .then(questions => { 
+        .then(questions => {
             helpers.runQuestions(questions, res)
         })
         .catch(err => console.log(err))
-        
-    // res.send("start testing has been called")
 })
 
-app.get("/add_question/", (req, res) => {
+app.get("/add_question", (req, res) => {
     res.render("add_question")
+})
+
+app.post("/add_question", (req, res) => {
+    let questionToAdd = {
+        question: req.body.questionText.trim(),
+        answer: req.body.answer.trim(),
+        topic: req.body.topic.trim(),
+        url: req.body.URL.trim(),
+        tags: req.body.tags.split(",").map(tag => tag.trim().toLowerCase()),
+        author: req.body.author.trim(),
+        comment: req.body.comment
+    }
+    data.addQuestion(questionToAdd)
+        .then((qta) => {
+                console.log("The new question has been add successfully to the database.");
+                console.log(qta)
+        }).catch((err) => {
+                console.log("A problem occurred, while trying to save the new question:")
+                console.log(questionToAdd)
+                console.log(err)
+        })
+        
+    res.redirect("/add_question")
+})
+
+app.get("/question_details", (req, res) => {
+    data.getQuestionByID(req.query.id)
+        .then(result => {
+            res.render("question_details", { question: result })
+        })
+        .catch(err => console.log(err))
+
+})
+
+app.post("/update_question", (req, res) => {
+    res.send("update question was called")
+})
+
+app.post("/delete_question", (req, res) => {
+    res.send("delete question was called")
 })
 
 // Start server
