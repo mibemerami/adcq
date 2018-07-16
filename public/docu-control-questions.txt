@@ -173,5 +173,37 @@ Q: What is the difference between a Schrene Scheme and a Workflow, regarding Sch
 A: A Screen Scheme mapps screens to Issue Statuses (like create, view, edit), and a Workflow mapps screens to Transitions.
 
 
+Specifying field behavior:
+https://confluence.atlassian.com/adminjiraserver078/specifying-field-behavior-947188850.html
+
+Q: Name the four attributes, that can be specified by a field configuration?
+A: The description; Whether the field is hidden or visible; Whether the field is required; Which renderer to use (for text fields only)
+
+Q: When should a field configuration be created?
+A: When an issue type requires specific fields to be present and/or fields that express unique behavior.
+
+Q: How do you map a field configuration to an issue type?
+A: Through a field configuration scheme.
+
+Q: Is it possible to delete the Default Field Configuration?
+A: No.
+
+Q: Where do you manage the field configurations?
+A: Under: Settings>Issues>Fields>Field Configurations
+
+Q: Is it possible to delete a field configuration that is associated with a field configuration scheme.
+A: No.
+
+Q: What is the difference between, hiding a field, and not adding it to a screen?
+A: To hide it is more general. Fields hidden through the field configuration will be hidden in all applicable screens, regardless of whether 
+or not they have been added to the screen.
+
+Q: What happens, if a field with a default value is hidden, via the field configuration?
+A: It does not receive value. 
+
+Q: What do you have to take care of, if you set a field to reqired?
+A: That the field is shown on the Create Issue Screen.
+
+
 
 
