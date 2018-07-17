@@ -20,6 +20,7 @@
                         document.getElementById("answer").textContent = "..."
                     }
                     document.getElementById("detailsLink").href = "/question_details?id="+question._id
+                    document.getElementById("tagsDisplay").textContent = question.tags
                 } else {
                     document.getElementById("doneInfo").className = "text-center text-success visible"
                 }
@@ -41,6 +42,7 @@
                     document.getElementById("answer").textContent = "..."
                 }
                 document.getElementById("detailsLink").href = "/question_details?id=" + question._id
+                document.getElementById("tagsDisplay").textContent = question.tags
                 document.getElementById("doneInfo").className = "text-center text-success invisible"
             } else {
                 document.questionAnswer = false
@@ -67,10 +69,9 @@
             </div>
         </div>
     </div>
-    <div>
-        <p class="text-center text-secondary">
-            Tags:<br> 
-            demo, test
-        </p>
+    <div class="m-1">
+        <p class="text-center text-secondary m-1">Tags:<br></p> 
+        <p class="text-center text-secondary m-1" id="tagsDisplay">{{questions.0.tags}}</p>
+        
     </div>
 </div>

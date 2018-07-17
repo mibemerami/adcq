@@ -112,6 +112,9 @@ app.post("/update_question", (req, res) => {
 })
 
 app.post("/delete_question", (req, res) => {
+    console.log("A post request has been received on delete_question. With query string:")
+    console.log(req.query);
+    
     if(req.query.delete){
         data.getQuestionByID({ _id: req.query.id })
             .then(result => {

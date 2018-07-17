@@ -4,6 +4,7 @@
   "description": "Questions to control your self after reading the atlassian documentation",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "test"
   },
   "author": "Milan Brzezinski",
