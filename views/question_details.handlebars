@@ -30,7 +30,19 @@
         <label for="comment">Comment</label>
         <input type="comment" class="form-control" id="comment" name="comment" aria-describedby="comment" value="{{question.comment}}">
     </div>
-    <button type="submit"  class="btn btn-primary">Update</button>
-    <button type="submit" formaction="/delete_question?id={{question._id}}" class="btn btn-primary">Delete</button>
+
+    <div class="btn-toolbar justify-content-between m-2" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group">
+            <a href="/questions-run?id={{question._id}}" class="btn btn-primary">Back</a>
+        </div>
+        <div class="btn-group mr-2 " role="group" aria-label="Second group">
+            
+            <button type="submit" formaction="/delete_question?id={{question._id}}" class="btn btn-primary">Delete</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </div>
+
+
+
 </form>
 
