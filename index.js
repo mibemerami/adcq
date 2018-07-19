@@ -4,6 +4,9 @@ const mongoose = require("mongoose")
 const bodyParser = require("body-parser");
 const data = require("./lib/data")
 const helpers = require("./lib/helpers")
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise  // Mongoose Promise is depricated
@@ -15,13 +18,38 @@ mongoose.connect("mongodb://localhost:27017/adcq")
     })
     .catch((err) => console.log(err))
 
+// Passport Config
+require('./lib/passport')(passport);
+
+// Load routes
+const users = require('./routes/users');
 
 // Initialize server
 let app = express()
 
 // Add middleware
+// Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+// Express session 
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+// Passport 
+app.use(passport.initialize());
+app.use(passport.session());
+// Flash 
+app.use(flash());
+// Global variables
+app.use(function (req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    res.locals.user = req.user || null;
+    next();
+});
 
 // Add and configure template-engine
 let hbs = exphbs.create({
@@ -134,8 +162,10 @@ app.post("/delete_question", (req, res) => {
             .catch(err => console.log("Error while loading a qustion: ", err))
         
     }
-    // res.send("delete question was called")
 })
+
+// Use routes from router
+app.use('/users', users);
 
 // Start server
 app.listen(3000, () => {
