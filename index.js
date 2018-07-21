@@ -64,7 +64,7 @@ app.engine("handlebars", hbs.engine)
 app.set("view engine", "handlebars")
 
 // Define routes
-app.get("/", (req, res) => {
+app.get("/", helpers.ensureAuthenticated, (req, res) => {
     data.getQuestionCategories()
         .then((result) => {
             let normalizedResult = helpers.normalizeQueryResultForStartPage(result)
@@ -73,7 +73,7 @@ app.get("/", (req, res) => {
         .catch(err => console.log(err))
 })
 
-app.get("/questions-run", (req, res) => {
+app.get("/questions-run", helpers.ensureAuthenticated, (req, res) => {
     data.getQuestionByID({ _id: req.query.id })
         .then(question => data.getAllQuestionsForTest(question.url))
         .then(questions => {
@@ -82,11 +82,11 @@ app.get("/questions-run", (req, res) => {
         .catch(err => console.log(err))
 })
 
-app.get("/add_question", (req, res) => {
+app.get("/add_question", helpers.ensureAuthenticated, helpers.ensureRoleDevOrBetter, (req, res) => {
     res.render("add_question")
 })
 
-app.post("/add_question", (req, res) => {
+app.post("/add_question", helpers.ensureAuthenticated, helpers.ensureRoleDevOrBetter, (req, res) => {
     let questionToAdd = {
         question: req.body.questionText.trim(),
         answer: req.body.answer.trim(),
@@ -109,7 +109,7 @@ app.post("/add_question", (req, res) => {
     res.redirect("/add_question")
 })
 
-app.get("/question_details", (req, res) => {
+app.get("/question_details", helpers.ensureAuthenticated, (req, res) => {
     data.getQuestionByID(req.query.id)
         .then(result => {
             res.render("question_details", { question: result })
@@ -118,7 +118,7 @@ app.get("/question_details", (req, res) => {
 
 })
 
-app.post("/update_question", (req, res) => {
+app.post("/update_question", helpers.ensureAuthenticated, helpers.ensureRoleDevOrBetter, (req, res) => {
     data.getQuestionByID({ _id: req.query.id })
         .then(result => {
             result.question = req.body.questionText.trim(),
@@ -139,7 +139,7 @@ app.post("/update_question", (req, res) => {
         .catch(err => console.log("Error while loading a qustion: ", err))
 })
 
-app.post("/delete_question", (req, res) => {
+app.post("/delete_question", helpers.ensureAuthenticated, helpers.ensureRoleDevOrBetter, (req, res) => {
     console.log("A post request has been received on delete_question. With query string:")
     console.log(req.query);
     
@@ -162,6 +162,12 @@ app.post("/delete_question", (req, res) => {
             .catch(err => console.log("Error while loading a qustion: ", err))
         
     }
+})
+
+// TODO:
+// app.get("/admin", helpers.ensureAuthenticated, helpers.ensureRoleAdminOrBetter, (req, res) => {
+app.get("/admin", helpers.ensureAuthenticated, (req, res) => {
+    res.render("users/update")
 })
 
 // Use routes from router

@@ -87,4 +87,54 @@ router.get('/logout', (req, res) => {
   res.redirect('/users/login');
 });
 
+// TODO: Check rights
+// Update User
+router.post("/update", (req, res) => {
+  let errors = []
+  // Sanity check:
+  if (req.body.password && req.body.password != req.body.password2) {
+    errors.push({ text: 'Passwords do not match' });
+  }
+  if (req.body.password && req.body.password.length < 4) {
+    errors.push({ text: 'Password must be at least 4 characters' });
+  }
+  if (!["user", "developer", "administrator"].includes(req.body.role)){
+    errors.push({text: "Invalid role."})
+  }
+
+  if (errors.length > 0) {
+    res.render('/admin', {
+      errors: errors,
+      name: req.body.name,
+      email: req.body.email,
+      role: req.body.role,
+      password: req.body.password,
+      password2: req.body.password2
+    })
+  } else {
+    User.findOne({ email: req.body.email })
+      .then(user => {
+        if (user) {
+          if (req.body.name) user.name = req.body.name.trim()
+          if (req.body.role) user.role = req.body.role
+          if (req.body.password) {
+            bcrypt.genSalt(10, (err, salt) => {
+              bcrypt.hash(req.body.password, salt, (err, hash) => {
+                if (err) throw err
+                user.password = hash
+                user.save()  // The async way
+              })
+            })
+          } else {
+            user.save()  // The synchronous way
+          }
+        } else {
+          req.flash('error_msg', 'Email is not registered.')
+          res.redirect('/admin')
+          
+        }
+      })
+  }
+})
+
 module.exports = router;
