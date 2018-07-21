@@ -89,7 +89,7 @@ router.get('/logout', (req, res) => {
 
 // TODO: Check rights
 // Update User
-router.post("/update", (req, res) => {
+router.post("/update", helpers.ensureAuthenticated, helpers.ensureRoleAdminOrBetter, (req, res) => {
   let errors = []
   // Sanity check:
   if (req.body.password && req.body.password != req.body.password2) {
@@ -123,10 +123,25 @@ router.post("/update", (req, res) => {
                 if (err) throw err
                 user.password = hash
                 user.save()  // The async way
+                    .then(updatedResult => {
+                      console.log("Update succesfull:")
+                      console.log(updatedResult)
+                      req.flash('success_msg', 'Update successful.')
+                      res.redirect('/admin')
+                    })
+                    .catch(err => console.log("Error while updating a user:", err))
+                return;
               })
             })
           } else {
             user.save()  // The synchronous way
+                .then(updatedResult => {
+                  console.log("Update succesfull:")
+                  console.log(updatedResult)
+                  req.flash('success_msg', 'Update successful.')
+                  res.redirect('/admin')
+                })
+                .catch(err => console.log("Error while updating a user:", err))
           }
         } else {
           req.flash('error_msg', 'Email is not registered.')
@@ -134,6 +149,7 @@ router.post("/update", (req, res) => {
           
         }
       })
+      .catch(err => console.log("Error reading user data: ", err))
   }
 })
 

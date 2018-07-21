@@ -166,7 +166,7 @@ app.post("/delete_question", helpers.ensureAuthenticated, helpers.ensureRoleDevO
 
 // TODO:
 // app.get("/admin", helpers.ensureAuthenticated, helpers.ensureRoleAdminOrBetter, (req, res) => {
-app.get("/admin", helpers.ensureAuthenticated, (req, res) => {
+app.get("/admin", helpers.ensureAuthenticated, helpers.ensureRoleAdminOrBetter, (req, res) => {
     res.render("users/update")
 })
 
