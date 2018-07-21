@@ -4,9 +4,9 @@ const mongoose = require("mongoose")
 const bodyParser = require("body-parser");
 const data = require("./lib/data")
 const helpers = require("./lib/helpers")
-const session = require('express-session');
-const passport = require('passport');
-const flash = require('connect-flash');
+const session = require('express-session')
+const passport = require('passport')
+const flash = require('connect-flash')
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise  // Mongoose Promise is depricated
@@ -19,18 +19,18 @@ mongoose.connect("mongodb://localhost:27017/adcq")
     .catch((err) => console.log(err))
 
 // Passport Config
-require('./lib/passport')(passport);
+require('./lib/passport')(passport)
 
 // Load routes
-const users = require('./routes/users');
+const users = require('./routes/users')
 
 // Initialize server
 let app = express()
 
 // Add middleware
 // Body Parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 // Express session 
 app.use(session({
     secret: 'secret',
@@ -38,16 +38,22 @@ app.use(session({
     saveUninitialized: true
 }));
 // Passport 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize())
+app.use(passport.session())
 // Flash 
-app.use(flash());
+app.use(flash())
 // Global variables
 app.use(function (req, res, next) {
-    res.locals.success_msg = req.flash('success_msg');
-    res.locals.error_msg = req.flash('error_msg');
-    res.locals.error = req.flash('error');
-    res.locals.user = req.user || null;
+    res.locals.success_msg = req.flash('success_msg')
+    res.locals.error_msg = req.flash('error_msg')
+    res.locals.error = req.flash('error')
+    res.locals.user = req.user || null
+    res.locals.userAccessLevel = {}
+    if (req.user) {
+        res.locals.userAccessLevel.user = (req.user.role === "user") || (req.user.role === "developer") || (req.user.role === "administrator")
+        res.locals.userAccessLevel.developer = (req.user.role === "developer") || (req.user.role === "administrator")
+        res.locals.userAccessLevel.administrator = (req.user.role === "administrator")
+    }
     next();
 });
 

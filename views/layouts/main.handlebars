@@ -24,15 +24,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home </a>
                 </li>
+                {{#if userAccessLevel.developer}}
                 <li class="nav-item">
                     <a class="nav-link" href="/add_question">Add Questions </a>
                 </li>
+                {{/if}}
+
             </ul>
             <ul class="navbar-nav ml-auto">
-                {{#if user}}
+                {{#if userAccessLevel.administrator}}
                 <li class="nav-item">
                     <a href="/admin" class="nav-link">Administration</a>
                 </li>
+                {{/if}}
+                {{#if user}}
                 <li class="nav-item">
                     <a href="/users/logout" class="nav-link">Logout</a>
                 </li>
