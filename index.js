@@ -11,7 +11,7 @@ const config = require("./config")
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise  // Mongoose Promise is depricated
-mongoose.connect("mongodb://localhost:27017/adcq")
+mongoose.connect(config.mongoURI)
     .then(() => {
         console.log(
             "Cennection to Mongo DB successfull."
@@ -215,8 +215,8 @@ app.get("/admin", helpers.ensureAuthenticated, helpers.ensureRoleAdminOrBetter, 
 app.use('/users', users);
 
 // Start server
-app.listen(3000, () => {
-    console.log("Listening on port 3000");
+app.listen(config.port, () => {
+    console.log("Listening on port ", config.port);
 
 })
 
