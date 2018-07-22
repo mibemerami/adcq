@@ -106,13 +106,17 @@ app.post("/add_question", helpers.ensureAuthenticated, helpers.ensureRoleDevOrBe
         .then((qta) => {
                 console.log("The new question has been add successfully to the database.");
                 console.log(qta)
+                req.flash("success_msg", "Question has been created.")
+                res.redirect("/add_question")
         }).catch((err) => {
                 console.log("A problem occurred, while trying to save the new question:")
                 console.log(questionToAdd)
                 console.log(err)
+                req.flash("error_msg", "A problem occurred, while creating question.")
+                res.redirect("/add_question")
         })
         
-    res.redirect("/add_question")
+    // res.redirect("/add_question")
 })
 
 app.get("/question_details", helpers.ensureAuthenticated, (req, res) => {
@@ -138,9 +142,14 @@ app.post("/update_question", helpers.ensureAuthenticated, helpers.ensureRoleDevO
                 .then(updatedResult => {
                     console.log("Update succesfull:")
                     console.log(updatedResult)
+                    req.flash("success_msg", "Question has been updated.")
                     res.redirect("/questions-run?id=" + req.query.id)
                 })
-                .catch(err => console.log("Error while updating a question:", err))
+                .catch(err => {
+                    console.log("Error while updating a question:", err)
+                    req.flash("error_msg", "Could not update question.")
+                    res.redirect("back")
+                })
         })
         .catch(err => console.log("Error while loading a qustion: ", err))
 })
@@ -150,17 +159,24 @@ app.post("/delete_question", helpers.ensureAuthenticated, helpers.ensureRoleDevO
     console.log(req.query);
     
     if(req.query.delete){
+        // If the query parameter isn't there, it means the deletion has not been confirmed. 
         data.getQuestionByID({ _id: req.query.id })
             .then(result => {
                 result.remove()
                     .then(x => {
                         console.log("The question has been removed")
+                        req.flash("success_msg", "Question has been deleted.")
                         res.redirect("/")
                     })
-                    .catch(err => console.log("Error while deleting a question.", err))
+                    .catch(err => {
+                        console.log("Error while deleting a question.", err)
+                        req.flash("error_msg", "Could not delete question.")
+                        res.redirect("back")
+                    })
             })
             .catch(err => console.log("Error while loading a qustion: ", err))
     }else{
+        // This is shown first
         data.getQuestionByID({ _id: req.query.id })
             .then(result => {
                 res.render("delete_question_confirmation",  { question: result })
