@@ -7,6 +7,7 @@ const helpers = require("./lib/helpers")
 const session = require('express-session')
 const passport = require('passport')
 const flash = require('connect-flash')
+const config = require("./config")
 
 // Connect to MongoDB
 mongoose.Promise = global.Promise  // Mongoose Promise is depricated
@@ -15,6 +16,17 @@ mongoose.connect("mongodb://localhost:27017/adcq")
         console.log(
             "Cennection to Mongo DB successfull."
         );
+    })
+    .then(() => {
+        data.getUser({ email: config.defaultAdmin.email})
+            .then(result => {
+                console.log(result)
+                if (!result) {
+                    console.log("Creating the default user.")
+                    data.addUser(config.defaultAdmin)
+                }
+            })
+            .catch(err => console.log("A problem occurred while creating the default user.", err))
     })
     .catch((err) => console.log(err))
 
