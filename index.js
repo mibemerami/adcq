@@ -66,6 +66,8 @@ app.use(function (req, res, next) {
         res.locals.userAccessLevel.developer = (req.user.role === "developer") || (req.user.role === "administrator")
         res.locals.userAccessLevel.administrator = (req.user.role === "administrator")
     }
+    res.locals.appTitle = config.appTitle
+    res.locals.appTitleBrev = config.appTitleBrev
     next();
 });
 
