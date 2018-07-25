@@ -1,9 +1,10 @@
 <div class="container">
     <script>
+
         function initializeQuestionData() {
             document.questionCounter = 0
             document.questionAnswer = false
-            document.questionsArray = JSON.parse('{{{supplyQuestions}}}')
+            document.questionsArray = {{{ questions }}}
         }
         function performNextStep() {
             if (document.questionCounter < document.questionsArray.length) {
@@ -52,16 +53,16 @@
         document.addEventListener('DOMContentLoaded', initializeQuestionData)
     </script>
     <h1 class="text-info">Test Run</h1>
-    <h2>{{questions.0.topic}}</h2>
+    <h2>{{firstQuestion.topic}}</h2>
     <div class="card card-body m-1">
-        <p class="text-center " id="question">{{questions.0.question}}</p>
+        <p class="text-center " id="question">{{firstQuestion.question}}</p>
         <p class="text-center " id="answer">... </p>
         <p id="doneInfo" class="text-center text-success invisible">Done</p>
 
 
         <div class="btn-toolbar justify-content-between m-2" role="toolbar" aria-label="Toolbar with button groups">
             <div class="btn-group mr-2" role="group" aria-label="First group">
-                <a href="/question_details?id={{questions.0._id}}" type="button" id="detailsLink" class="btn btn-secondary">Details</a>
+                <a href="/question_details?id={{firstQuestion._id}}" type="button" id="detailsLink" class="btn btn-secondary">Details</a>
             </div>
             <div class="btn-group mr-2 " role="group" aria-label="Second group">
                 <button type="button" onclick="performBackStep();" class="btn btn-secondary">Back</button>
@@ -71,7 +72,7 @@
     </div>
     <div class="m-1">
         <p class="text-center text-secondary m-1">Tags:<br></p> 
-        <p class="text-center text-secondary m-1" id="tagsDisplay">{{questions.0.tags}}</p>
+        <p class="text-center text-secondary m-1" id="tagsDisplay">{{firstQuestion.tags}}</p>
         
     </div>
 </div>
