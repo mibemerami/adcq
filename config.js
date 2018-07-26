@@ -7,6 +7,7 @@ config.dev = {
     appTitleBrev: "ADCQ",
     port: process.env.PORT || 3000,
     mongoURI: process.env.mongoURI || "mongodb://localhost:27017/adcq",
+    // mongoURI: "mongodb://mibemerami:Drp-mam-77@ds247191.mlab.com:47191/adcq",
     defaultAdmin: {
         email: "admin@nowhere.com",
         name: "admin",
