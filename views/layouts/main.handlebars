@@ -32,9 +32,6 @@
                 {{/if}}
 
             </ul>
-            <script type="text/javascript" 
-                src="https://dev-team.aservo.com/work/s/3259c0beb88814186b9c7dfcb961fdb5-T/-ra23nq/73014/b6b48b2829824b869586ac216d119363/2.0.23/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=0f446b6e">
-            </script>
 
             <ul class="navbar-nav ml-auto">
                 {{#if userAccessLevel.administrator}}
@@ -60,6 +57,11 @@
     <div class="container">
         {{> _msg}} {{> _errors}} {{{body}}}
     </div>
+
+    {{!-- Add a Jira Issue-Collector --}}
+    <script type="text/javascript" 
+        src="https://dev-team.aservo.com/work/s/3259c0beb88814186b9c7dfcb961fdb5-T/-ra23nq/73014/b6b48b2829824b869586ac216d119363/2.0.23/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&collectorId=0f446b6e">
+    </script>
 
     <!-- Javascript for Bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
