@@ -10,40 +10,53 @@
       {
         "id": "start-page;",
         "keyword": "Scenario",
-        "line": 4,
+        "line": 7,
         "name": "",
         "tags": [
           {
             "name": "@startPage",
-            "line": 3
+            "line": 6
           }
         ],
         "type": "scenario",
         "steps": [
           {
             "arguments": [],
+            "keyword": "Given ",
+            "line": 4,
+            "name": "I am logged in",
+            "match": {
+              "location": "specs\\features\\step_definitions\\loginSteps.js:10"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9003000000
+            }
+          },
+          {
+            "arguments": [],
             "keyword": "When ",
-            "line": 5,
+            "line": 8,
             "name": "I open the start page",
             "match": {
               "location": "specs\\features\\step_definitions\\startpageSteps.js:6"
             },
             "result": {
               "status": "passed",
-              "duration": 14297000000
+              "duration": 2176000000
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 6,
+            "line": 9,
             "name": "I can see a \"Atlassian Docu Control Questions\" in the nav-bar",
             "match": {
               "location": "specs\\features\\step_definitions\\startpageSteps.js:13"
             },
             "result": {
               "status": "passed",
-              "duration": 21000000
+              "duration": 15000000
             }
           }
         ]

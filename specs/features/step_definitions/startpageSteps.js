@@ -8,13 +8,13 @@ When(/^I open the start page$/, () => {
     return client
         .waitForElementVisible('body', 1000)
         .pause(2000)
-});
+})
 
 Then('I can see a {string} in the nav-bar', (string) => {
     console.log('looking for', string)
     return mainPage.checkAppTitle(string)
     // return 'pending'
-});
+})
 
 
 

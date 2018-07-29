@@ -27,6 +27,9 @@ module.exports = {
             launch_url: 'http://localhost:3000',
             selenium_port: 4444,
             selenium_host: '127.0.0.1',
+            globals: {
+                waitForConditionTimeout: 10000,
+            },
             desiredCapabilities: {
                 browserName: 'chrome',
                 javascriptEnabled: true,
