@@ -1,0 +1,53 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "start page",
+    "line": 1,
+    "id": "start-page",
+    "tags": [],
+    "uri": "specs\\features\\startpage.feature",
+    "elements": [
+      {
+        "id": "start-page;",
+        "keyword": "Scenario",
+        "line": 4,
+        "name": "",
+        "tags": [
+          {
+            "name": "@startPage",
+            "line": 3
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 5,
+            "name": "I open the start page",
+            "match": {
+              "location": "specs\\features\\step_definitions\\startpageSteps.js:6"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 14297000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 6,
+            "name": "I can see a \"Atlassian Docu Control Questions\" in the nav-bar",
+            "match": {
+              "location": "specs\\features\\step_definitions\\startpageSteps.js:13"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

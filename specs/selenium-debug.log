@@ -1,0 +1,30 @@
+16:06:38.937 INFO [GridLauncherV3.launch] - Selenium build info: version: '3.13.0', revision: '2f0d292'
+16:06:38.938 INFO [GridLauncherV3$1.launch] - Launching a standalone Selenium Server on port 4444
+2018-07-29 16:06:39.010:INFO::main: Logging initialized @280ms to org.seleniumhq.jetty9.util.log.StdErrLog
+16:06:39.178 INFO [SeleniumServer.boot] - Selenium Server is up and running on port 4444
+16:06:40.648 INFO [ActiveSessionFactory.apply] - Capabilities are: {
+  "acceptSslCerts": true,
+  "browserName": "firefox",
+  "javascriptEnabled": true,
+  "marionette": true
+}
+16:06:40.649 INFO [ActiveSessionFactory.lambda$apply$11] - Matched factory org.openqa.selenium.remote.server.ServicedSession$Factory (provider: org.openqa.selenium.firefox.GeckoDriverService)
+1532873200684	geckodriver	INFO	geckodriver 0.20.0
+1532873200692	geckodriver	INFO	Listening on 127.0.0.1:24368
+1532873201556	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\nomis\\AppData\\Local\\Temp\\rust_mozprofile.aXPc5a0PIoLd"
+Unable to read VR Path Registry from C:\Users\nomis\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\nomis\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\nomis\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\nomis\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\nomis\AppData\Local\openvr\openvrpaths.vrpath
+1532873204592	Marionette	INFO	Listening on port 53380
+16:06:44.740 INFO [ProtocolHandshake.createSession] - Detected dialect: W3C
+16:06:44.778 INFO [RemoteSession$Factory.lambda$performHandshake$0] - Started new session 47ddba45-db07-49ea-8792-46497625d442 (org.openqa.selenium.firefox.GeckoDriverService)
+[Parent 6180, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Parent 6180, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+[GPU 10532, Chrome_ChildThread
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1532873215704	geckodriver::marionette	ERROR	Failed to stop browser process
+16:06:55.761 INFO [ActiveSessions$1.onStop] - Removing session 47ddba45-db07-49ea-8792-46497625d442 (org.openqa.selenium.firefox.GeckoDriverService)
