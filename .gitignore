@@ -1,2 +1,5 @@
 #data/* - there is a .gitignorefile in that folder
 #node_modules/* - there is a .gitignorefile in that folder
+
+specs/reports/*
+specs/selenium-debug.log
