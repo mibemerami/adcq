@@ -11,7 +11,7 @@ Scenario: Open startpage
 
 Scenario: Article links
     When I click the link to the article of an item in the list
-    Then a page of the atlassian documentaiton  opens
+    Then a page of the atlassian documentaiton opens
 
 Scenario: Test run links
     When I click the link to a question run 

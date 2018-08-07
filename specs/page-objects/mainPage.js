@@ -1,33 +1,34 @@
 
 module.exports = {
 
-    
+
     url: function () {
         return this.api.launchUrl
     },
 
     elements: {
-
-        // shorthand, specifies selector
-        applicationTitle: 'a.navbar-brand',
-    
-
-        // full
-        myTextInput: {
-            selector: 'input[type=text]',
-            locateStrategy: 'css selector'
+        applicationTitle: { 
+            selector: 'a.navbar-brand', 
+            locateStrategy: 'css selector' 
+        },
+        startTestRunButtons: {
+            selector: '//a[text() = "Start Testing"]',
+            locateStrategy: 'xpath'
         }
 
     },
 
     commands: [
         {
+            // example
             myCustomPause: function () {
                 this.api.pause(this.props.myPauseTime)
             },
             checkAppTitle: function (linkText) {
-                console.log('checking App Title.')
-                this.api.expect.element('@applicationTitle').text.to.equal(linkText)
+                return this.api.expect.element(this.elements.applicationTitle.selector).text.to.equal(linkText)
+            },
+            startFirstTestRun: function () {
+                return this.click('@startTestRunButtons')
             }
         }
     ],
@@ -37,7 +38,7 @@ module.exports = {
         myPauseTime: 1000
     }
 
-    
+
 }
 
 

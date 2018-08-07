@@ -16,6 +16,9 @@ Then('I can see {string} as application title in the nav-bar', (string) => {
     // return 'pending'
 })
 
-
+Given('I click the link to a question run', function () {
+    mainPage.startFirstTestRun()
+    return 'pending';
+});
 
 
