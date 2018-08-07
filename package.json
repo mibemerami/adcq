@@ -8,7 +8,8 @@
     "test": "test",
     "e2e-test": "node nightwatch.js",
     "e2e-test:chrome": "npm run e2e-test -- --env chrome",
-    "e2e-test:firefox": "npm run e2e-test -- --env firefox"
+    "e2e-test:firefox": "npm run e2e-test -- --env firefox",
+    "e2e-test:chrome_hl": "npm run e2e-test -- --env chrome_headless"
   },
   "author": "Milan Brzezinski",
   "license": "ISC",

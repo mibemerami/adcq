@@ -10,7 +10,7 @@ When(/^I open the start page$/, () => {
         .pause(2000)
 })
 
-Then('I can see a {string} in the nav-bar', (string) => {
+Then('I can see {string} as application title in the nav-bar', (string) => {
     console.log('looking for', string)
     return mainPage.checkAppTitle(string)
     // return 'pending'
