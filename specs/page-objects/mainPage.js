@@ -14,6 +14,10 @@ module.exports = {
         startTestRunButtons: {
             selector: '//a[text() = "Start Testing"]',
             locateStrategy: 'xpath'
+        },
+        articleLinks: {
+            selector: 'a.btn.btn-outline-info',
+            locateStrategy: 'css selector'
         }
 
     },
