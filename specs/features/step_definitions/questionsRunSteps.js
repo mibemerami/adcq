@@ -5,8 +5,13 @@ const questionsRunPage = client.page.questionsRunPage()
 
 
 When('the questions run starts', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    return questionsRunPage
+        .waitForElementVisible("@pageHeading")
+        .waitForElementVisible("@detailsButton")
+        .waitForElementVisible("@backButton")
+        .waitForElementVisible("@nextButton")
+        .waitForElementVisible("@questionParagraph")
+        .checkQuestionNotEmpty()
 });
 
 When('I note every element on the page of the questions run', function () {

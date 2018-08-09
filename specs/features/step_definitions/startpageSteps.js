@@ -19,12 +19,9 @@ Then('I can see {string} as application title in the nav-bar', (string) => {
 Then('I can see the list of articles', function () {
     return client
                 .waitForElementVisible(mainPage.elements.articleLinks.selector)
-                .getText(mainPage.elements.articleLinks.selector, (links) => {
-                    console.log("A link from the list:")
-                    console.log(links)
-                    client.assert.ok(links.value.includes('http'))
+                .getText(mainPage.elements.articleLinks.selector, (link) => {
+                    client.assert.ok(link.value.includes('http'))
                 })
-    
 });
 
 Given('I click the link to a question run', function () {
