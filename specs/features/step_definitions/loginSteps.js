@@ -8,7 +8,10 @@ Given('I am logged out', () => {
 })
 
 Given('I am logged in', () => {
+    let user = process.env.TESTUSER
+    let pw = process.env.TESTUSERPW
+    console.log("Try login with: ", user, pw)    
     loginPage.navigate()
-    return loginPage.login('mrp@tralala.net', 'Ver1fach!')
+    return loginPage.login(user, pw)
 })
 
