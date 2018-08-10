@@ -22,11 +22,28 @@ Then('I can see the list of articles', function () {
                 .getText(mainPage.elements.articleLinks.selector, (link) => {
                     client.assert.ok(link.value.includes('http'))
                 })
-});
+})
 
 Given('I click the link to a question run', function () {
     return mainPage.startFirstTestRun()
+})
+
+When('I click the link to the article of an item in the list', function () {
+    return client.url((firstUrl) => {
+        mainPage.callFirstArticle()
+        client.url((secondUrl) => {
+            client.assert.ok(firstUrl.value !== secondUrl.value)
+        })
+    })
+})
+
+Then('a page of the atlassian documentaiton opens', function () {
+    client.url((articleUrl) => {    
+        client.assert.ok(articleUrl.value.includes("atlassian"))
+    })
 });
+
+
 
 
 

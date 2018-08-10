@@ -33,6 +33,11 @@ module.exports = {
             },
             startFirstTestRun: function () {
                 return this.click('@startTestRunButtons')
+            },
+            callFirstArticle: function () {
+                return this
+                        .click("@articleLinks")
+                        .waitForElementVisible("body")
             }
         }
     ],
