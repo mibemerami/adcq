@@ -2,6 +2,7 @@ const { client } = require('nightwatch-cucumber')
 const { Given, When, Then } = require('cucumber')
 
 const questionsRunPage = client.page.questionsRunPage()
+const now = Date.now().toString()
 
 
 When('the questions run starts', function () {
@@ -14,19 +15,17 @@ When('the questions run starts', function () {
         .checkQuestionNotEmpty()
 });
 
-When('I note every element on the page of the questions run', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+When('I note every element on the questions run page', function () {
+    return questionsRunPage.noteDownCurrentValues(now)
+    // return 'pending';
 });
 
 When('I click back', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+    return questionsRunPage.clickBack()
 });
 
-Then('nothing changes', function () {
-    // Write code here that turns the phrase above into concrete actions
-    return 'pending';
+Then('nothing changes on the questions run page', function () {
+    return questionsRunPage.assertNoChange(now)
 });
 
 

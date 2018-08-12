@@ -7,9 +7,9 @@ Background: Start questions run
 
 Scenario: Back button on start
     When the questions run starts
-    And I note every element on the page of the questions run 
+    And I note every element on the questions run page
     And I click back 
-    Then nothing changes
+    Then nothing changes on the questions run page
 
 Scenario: Forward button
     When When the questions run starts

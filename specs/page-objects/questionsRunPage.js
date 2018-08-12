@@ -53,6 +53,43 @@ module.exports = {
                     .getText('@questionParagraph', (result) => {
                         this.api.assert.ok(result.value.length > 1)
                     })
+            },
+            noteDownCurrentValues: function (timestamp) {
+                console.log('questionsRunPage.noteDownCurrentValues', timestamp)
+                console.log(this.props)
+                this.props[timestamp] = {}
+                this.waitForElementVisible('@questionParagraph')
+                    .getText('@questionParagraph', (result) => {
+                        this.props[timestamp].questionText = result.value
+                    })
+                    .getText('@answerParagraph', (result) => {
+                        this.props[timestamp].answerText = result.value
+                    })
+                    .getText('@tagsList', (result) => {
+                        this.props[timestamp].tagsList = result.value
+                    })
+            },
+            assertNoChange: function (timestamp) {
+                console.log('questionsRunPage.assertNoChange', timestamp)
+                console.log(this.props)
+                this.waitForElementVisible('@questionParagraph')
+                    .getText('@questionParagraph', (result) => {
+                        this.api.assert.ok(this.props[timestamp].questionText === result.value)
+                    })
+                    .getText('@answerParagraph', (result) => {
+                        this.api.assert.ok(this.props[timestamp].answerText === result.value)
+                    })
+                    .getText('@tagsList', (result) => {
+                        this.api.assert.ok(this.props[timestamp].tagsList === result.value)
+                    })
+            },
+            clickBack: function () {
+                this.waitForElementVisible('@backButton')
+                    .click('@backButton')
+            },
+            clickNext: function () {
+                this.waitForElementVisible('@nextButton')
+                    .click('@nextButton')
             }
         }
     ],
