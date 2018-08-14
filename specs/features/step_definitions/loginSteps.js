@@ -15,6 +15,14 @@ Given('I am logged in', () => {
     return loginPage.login(user, pw)
 })
 
+Given('I am logged in as administrator', () => {
+    let user = process.env.TESTUSER
+    let pw = process.env.TESTUSERPW
+    console.log("Try login with: ", user, pw)
+    loginPage.navigate()
+    return loginPage.login(user, pw)
+})
+
 Then('I can see {string} in the nav-bar', function (string) {
     return client.useXpath()
                 .waitForElementVisible('//nav//a[text() = "' + string + '"]')
