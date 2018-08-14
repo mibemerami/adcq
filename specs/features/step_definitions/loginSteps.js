@@ -15,3 +15,13 @@ Given('I am logged in', () => {
     return loginPage.login(user, pw)
 })
 
+Then('I can see {string} in the nav-bar', function (string) {
+    return client.useXpath()
+                .waitForElementVisible('//nav//a[text() = "' + string + '"]')
+                .useCss()
+})
+
+Then('I can see the login form', function () {
+    return loginPage.checkLoginForm()
+})
+

@@ -25,7 +25,17 @@ module.exports = {
                 .clearValue('@loginFormPW')
                 .setValue('@loginFormPW', password)
                 .click('@loginFormSubmitButton')
+            },
+            checkNavBarLinkText: function (linkText) {
+                return this.useXpath()
+                    .waitForElementVisible('//nav//a[text() = "'+linkText+'"]')
+                    .useCss()
+            },
+            checkLoginForm: function () {
+                return this.waitForElementVisible('@loginFormEmail')
+                            .waitForElementVisible('@loginFormPW')
             }
+            
         }
     ],
 
