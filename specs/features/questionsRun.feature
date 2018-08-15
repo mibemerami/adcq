@@ -12,7 +12,7 @@ Scenario: Back button on start
     Then nothing changes on the questions run page
 
 Scenario: Forward button
-    When When the questions run starts
+    When the questions run starts
     Then I can see the question text
     When I click next
     Then the answer text appears
@@ -26,7 +26,7 @@ Scenario: Back button in test run
     And the answer text appears
     And I click next
     And I can see the question text
-    And I note every element on the page of the questions run 
+    And I note every element on the questions run page
     And I click back
     Then I can see every element like noted before 
 

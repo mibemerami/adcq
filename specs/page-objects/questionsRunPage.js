@@ -48,10 +48,22 @@ module.exports = {
             myCustomPause: function () {
                 this.api.pause(this.props.myPauseTime)
             },
-            checkQuestionNotEmpty: function (result) {
+            checkQuestionNotEmpty: function () {
                 this.waitForElementVisible('@questionParagraph')
                     .getText('@questionParagraph', (result) => {
                         this.api.assert.ok(result.value.length > 1)
+                    })
+            },
+            checkAnswerNotEmpty: function () {
+                this.waitForElementVisible('@answerParagraph')
+                    .getText('@answerParagraph', (result) => {
+                        this.api.assert.ok(result.value.length > 1 && result.value !== "...")
+                    })
+            },
+            checkAnswerEmpty: function () {
+                this.waitForElementVisible('@answerParagraph')
+                    .getText('@answerParagraph', (result) => {
+                        this.api.assert.ok(result.value === "...")
                     })
             },
             noteDownCurrentValues: function (timestamp) {
